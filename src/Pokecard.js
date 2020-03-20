@@ -9,13 +9,16 @@ let padToThree = number => (number <= 999 ? `00${number}`.slice(-3) : number);
 class Pokecard extends Component {
   render() {
     const props = this.props;
+    console.log(props);
     let imgSrc = `${POKE_API_IMG}${padToThree(props.id)}.png`;
     return (
       <div className="Pokecard">
         <h1 className="Pokecard-title">{props.name}</h1>
-        <img src={imgSrc} alt="{props.name}" />
+        <div className="Pokemon-image">
+          <img src={imgSrc} alt="{props.name}" />
+        </div>
         <div className="Pokecard-data">Type: {props.type}</div>
-        <div className="Pokecard-data">EXP: {this.props.exp}</div>
+        <div className="Pokecard-data">EXP: {props.exp}</div>
       </div>
     );
   }

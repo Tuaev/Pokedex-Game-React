@@ -3,28 +3,21 @@ import Pokecard from './Pokecard';
 import './Pokedex.css';
 
 class Pokedex extends Component {
-  static defaultProps = {
-    pokemon: [
-      { id: 4, name: 'Charmander', type: 'fire', base_experience: 62 },
-      { id: 7, name: 'Squirtle', type: 'water', base_experience: 63 },
-      { id: 11, name: 'Metapod', type: 'bug', base_experience: 72 },
-      { id: 12, name: 'Butterfree', type: 'flying', base_experience: 178 },
-      { id: 25, name: 'Pikachu', type: 'electric', base_experience: 112 },
-      { id: 39, name: 'Jigglypuff', type: 'normal', base_experience: 95 },
-      { id: 94, name: 'Gengar', type: 'poison', base_experience: 225 },
-      { id: 133, name: 'Eevee', type: 'normal', base_experience: 65 }
-    ]
-  };
   render() {
     const props = this.props;
+    let title;
+    if (props.isWinner) {
+      title = <h1 className="Pokedex-winner">Winning Hand</h1>;
+    } else {
+      title = <h1 className="Pokedex-loser">Losing Hand</h1>;
+    }
     return (
       <div className="Pokedex">
-        <h1>Pokedex</h1>
-        <p>Total Exerpience: {props.exp}</p>
-        <p>{this.props.isWinner ? 'Winner!' : 'Loser!'}</p>
+        {title}
+        <h4>Total Exerpience: {props.exp}</h4>
         <div className="Pokedex-cards">
           {props.pokemon.map(poke => (
-            <Pokecard id={poke.id} name={poke.name} type={poke.type} exp={poke.exp} />
+            <Pokecard id={poke.id} name={poke.name} type={poke.type} exp={poke.base_experience} />
           ))}
         </div>
       </div>
